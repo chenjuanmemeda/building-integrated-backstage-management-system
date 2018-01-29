@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>环状图</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script>
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip : { //弹窗组件
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: { //可视化的工具箱
+                feature: {
+                    restore: {
+                        show: true
+                    },//重置
+                    saveAsImage: {
+                        show: true
+                    } //保存图片
+                }
+            },
+            series: [
+                {
+                    name: '业务指标',
+                    type: 'gauge',
+                    detail: {formatter:'{value}'},
+                    data: [{value: 50, name: 'min'}]
+                }
+            ]
+        };
+
+        setInterval(function () {//把option.series[0].data[0].value的值使用random()方法获取一个随机数
+            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+            myChart.setOption(option, true);
+        },2000);
+         // 使用刚指定的配置项和数据显示图表。
+         myChart.setOption(option);
+    </script>
+</body>
+</html>

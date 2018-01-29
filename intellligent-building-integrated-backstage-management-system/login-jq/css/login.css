@@ -1,0 +1,253 @@
+	.scrollBanner-icon:hover{
+		box-shadow: 0 0 5px 2px white;
+	}
+	.scrollBanner-icon:active{
+		background-color: white;box-shadow: 0 0 5px 2px white;
+	}
+	/* language */
+	.login-language {
+		position: absolute;
+		right: 106px;
+		top: 62px;
+		z-index: 10;
+		color: #aaacb2;
+		font-size: 12px;
+	}
+	.login-language .active {
+		color: #ffffff;
+	}
+	.login-language a {
+		color: #aaacb2;
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+	/* agreement */
+	.login-agreement {
+		width: 370px;
+		height: 20px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 30px;
+		margin-left: auto;
+		margin-right: auto;
+		z-index: 10;
+		text-align: center;
+		font-size: 13px;
+		color: #adadb1;
+	}
+	a:link {
+		text-decoration: none;
+	}
+	.login-agreement a {
+		font-size: 13px;
+		color: #adadb1;
+		margin-right: 3px;
+		margin-left: 3px;
+	}
+	/*login  */
+	.login-main {
+            width: 400px;
+            height: 394px;
+            background-color: #ecedf1;
+            position: absolute;
+            right: 102px;
+            top: 110px;
+            z-index: 10;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            border-radius: 6px;
+        }
+        .login-logo {
+            width: 100%;
+            height: 35px;
+            text-align: center;
+            margin-top: 46px;
+        }
+        .login-name {
+            width: 100%;
+            height: 50px;
+            margin-left: 51px;
+            margin-top: 10px;
+        }
+        .login-icon1 {
+            position: absolute;
+            left: 64px;
+            top: 138px;
+            z-index: 5;
+            background-image: url(../login/login-name.png);
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 24px;
+            height: 24px;
+        }
+        .login-info {
+            width: 100%;
+            height: 12px;
+            font-size: 12px;
+            color: #990000;
+            margin-left: 52px;
+            margin-top: 19px;
+        }
+        a:visited {
+            text-decoration: none;
+        }
+        a:link {
+            text-decoration: none;
+        }
+        a {
+            font-size: 100%;
+            vertical-align: baseline;
+            margin: 0px;
+            padding: 0px;
+            background: transparent;
+            text-decoration: none;
+        }
+        .login-icon-delete1 {
+            position: absolute;
+            left: 324px;
+            top: 141px;
+            z-index: 5;
+            background-image: url(login/login-delete.png);
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 24px;
+            height: 24px;
+        }
+        .login-name-input {
+            width: 228px;
+            height: 48px;
+            border: 1px solid #cbcbd5;
+            padding: 0 35px;
+            font-size: 15px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            border-radius: 6px;
+			outline:none;
+        }
+        .login-password {
+            width: 100%;
+            height: 50px;
+            margin-left: 51px;
+            margin-top: 10px;
+        }
+        .login-icon2 {
+            position: absolute;
+            left: 64px;
+            top: 197px;
+            z-index: 5;
+            background-image: url(../login/login-password.png);
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 24px;
+            height: 24px;
+        }
+        .login-icon-delete2 {
+            position: absolute;
+            left: 324px;
+            top: 200px;
+            z-index: 5;
+            background-image: url(login/login-delete.png);
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 24px;
+            height: 24px;
+        }
+        .login-password-input {
+            width: 228px;
+            height: 48px;
+            padding: 0 35px;
+            font-size: 15px;
+            border: 1px solid #cbcbd5;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            border-radius: 6px;
+			outline:none;
+        }
+        .login-sub {
+            width: 100%;
+            height: 55px;
+            margin-left: 51px;
+            margin-top: 50px;
+			outline:none;
+        }
+        .login-button {
+            width: 300px;
+            height: 55px;
+			outline:none;
+            background-color: #000000;
+            border: 0;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 19px;
+            cursor: pointer;
+        }
+		/*  */
+		.login-code {
+            width: 400px;
+            height: 100px;
+            position: absolute;
+            right: 102px;
+            top: 515px;
+            z-index: 10;
+        }
+        .login-code-android {
+            width: 52px;
+            height: 52px;
+            margin-left: 108px;
+            -webkit-border-radius: 26px;
+            -moz-border-radius: 26px;
+            -ms-border-radius: 26px;
+            border-radius: 26px;
+            text-align: center;
+            float: left;
+        }
+		.login-code-android-code {
+			position: absolute;
+			z-index: 10;
+			width: 140px;
+			height: 164px;
+			background-image: url(login/login-prompt.png);
+			background-repeat: no-repeat;
+			text-align: center;
+		}
+        .code-android {
+            width: 28px;
+            height: 34px;
+            margin-top: 9px;
+        }
+        .login-code-ios {
+            width: 52px;
+            height: 52px;
+            -webkit-border-radius: 26px;
+            -moz-border-radius: 26px;
+            -ms-border-radius: 26px;
+            border-radius: 26px;
+            float: left;
+            text-align: center;
+            margin-left: 100px;
+        }
+		.login-code-ios-code {
+			position: absolute;
+			z-index: 10;
+			width: 140px;
+			height: 164px;
+			background-image: url(login/login-prompt.png);
+			background-repeat: no-repeat;
+			text-align: center;
+		}
+        .code-ios {
+            width: 28px;
+            height: 34px;
+            margin-top: 9px;
+        }
+		.code-img-size {
+			width: 110px;
+			height: 110px;
+		}

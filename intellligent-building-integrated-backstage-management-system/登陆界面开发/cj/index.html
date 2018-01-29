@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vuetest</title>
+
+    <!-- 引入插件 -->
+    <script type="text/javascript" src="./js/canvas-particle.js"></script>
+
+    <!-- 初始化样式 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <style type="text/css">
+    	#login-index {
+			  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+			  -webkit-font-smoothing: antialiased;
+			  -moz-osx-font-smoothing: grayscale;
+			  text-align: center;
+			  color: #2c3e50;
+			  width: 100%;
+			  height: 100%;
+			  position: relative;
+			}
+			.index-bn{
+				width: 100%;
+				height: 100%;
+				overflow: hidden;   
+				transition: 1s;
+				position: relative;
+			}
+			.index-bn>div{
+				width: 200%;
+				height: 100%;
+				transition: 3s;
+				position: relative;
+			}
+			.index-bn>div.active{
+				transform: translateX(-50%);
+			}
+			.index-bn>div>.pic-bg{
+				width: 50%;
+				height: 100%;
+				float: left;
+				position: relative;
+			}
+			.index-bn>div>.pic-bg>.banner{
+				width: 100%;height: 100%;
+			}
+			#banner-dot{
+				position: absolute;
+				bottom: 60px;left: 50%;
+				transform: translateX(-50%);
+			}
+			#banner-dot>.dot{
+				width: 20px;height: 20px;
+				background: white;
+				border-radius: 50%;
+				display: inline-block;
+				margin: 0 10px;
+				cursor: pointer;
+			}
+			#banner-dot>.active{
+				background: red;
+			}
+			#particle-div{
+				position: relative;
+			}
+    </style>
+  </head>
+  <body>
+  	<div id="login-index">
+		  <div class="index-bn">
+				<div id="banner-content">
+					<div class="pic-bg">
+						<img src="./images/banner (2).jpg" class="banner">
+					</div>
+					<div class="pic-bg" id="particle-div">
+						<img src="./images/banner (1).jpg" class="banner">
+					</div>			
+				</div>
+				<ul id="banner-dot">
+					<li class="dot" data-i='0'></li>
+					<li class="dot" data-i='1'></li>
+				</ul>
+			</div>
+	  </div>
+  </body>
+<script type="text/javascript">
+	(function(){
+		var btns=document.getElementById('banner-dot').getElementsByTagName('li');
+		btns[0].className+=' active';
+		
+		
+		for(var i=0;i<btns.length;i++){
+			btns[i].onclick=function(e){
+				changeBanner(e.target)
+			}
+		}
+	    //配置
+	  var config = {
+	      vx: 4,	//小球x轴速度,正为右，负为左
+	      vy: 4,	//小球y轴速度
+	      height: 2,	//小球高宽，其实为正方形，所以不宜太大
+	      width: 2,
+	      count: 200,		//点个数
+	      color: "121, 162, 185", 	//点颜色
+	      stroke: "130,255,255", 		//线条颜色
+	      dist: 6000, 	//点吸附距离
+	      e_dist: 20000, 	//鼠标吸附加速距离
+	      max_conn: 10 	//点到点最大连接数
+	  }
+	  //调用
+	  CanvasParticle(config);
+
+
+	  function changeBanner(target){
+	  	console.log(target.getAttribute('data-i'));
+			for(var i=0;i<btns.length;i++){
+					 btns[i].className='dot';
+				}
+				target.className+=' active';
+				var con=document.getElementById('banner-content');
+				if (target.getAttribute('data-i')!='0') {
+					con.className='active'
+				}else{
+					con.className='';
+				}
+	  }
+
+	  setInterval(function(){
+	  	for(var i=0;i<btns.length;i++){
+	  		if((btns[i].getAttribute('class').indexOf('active')!=-1)&&(i==0)){
+	  			changeBanner(btns[1]);
+	  			break;
+	  		}else{
+	  			changeBanner(btns[0]);
+	  			break;
+	  		}
+			}
+	  },3000)		
+	})()
+	
+</script>
+</html>

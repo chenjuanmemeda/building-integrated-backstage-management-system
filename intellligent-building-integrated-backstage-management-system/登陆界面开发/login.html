@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login页面</title>
+    <link rel="icon" href="login/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/login.css">
+    <!-- 初始化样式 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+</head>
+<script src="js/jquery.min.js"></script>
+<script src="js/canvas-particle.js"></script>
+<body>
+    <!-- <form action='login' method='post' id='formID'></form> -->
+    <div id="login-index">
+        <div class="index-bn">
+            <div id="banner-content">
+                <div class="pic-bg">
+                    <div class="logo"></div>
+                    <img src="./login/login-1.png" class="banner">
+                </div>
+                <div class="pic-bg" id="particle-div">
+                    <img src="./login/login-2.png" class="banner">
+                </div>          
+            </div>
+                <ul id="banner-dot">
+                    <li class="dot" data-i='0'></li>
+                    <li class="dot" data-i='1'></li>
+                </ul>
+            </div>
+        </div>
+        <ul class='pages title'>
+            <li class='active'></li>
+            <li></li>
+        </ul>
+        <div class="login-language">
+            <a href="" class='active' id="china">中文&nbsp</a>|
+            <a href=""  id="english">ENG</a>
+        </div>
+        <div class="login-main">
+            <div class="login-logo">
+                <img src="login/login-logo.png" alt="">
+            </div>
+            <div class="login-info"></div>
+            <div class="login-name">
+                <i class="login-icon1"></i>
+                <a href="javascript:;" style="display:none;" id="delete1">
+                    <i class="login-icon-delete1"></i>
+                </a>
+                <input type="text" name="username" 
+                    class="login-name-input login-input"
+                 placeholder="请输入用户名" tabindex="1" 
+                value maxlength="20" >
+            </div>
+            <div class="login-password">
+                <i class="login-icon2"></i>
+                <a href="javascript:;" style="display:none;" id="delete2">
+                    <i class="login-icon-delete2"></i>
+                </a>
+                <input type="text" name="password" 
+                    class="login-password-input login-input"
+                 placeholder="请输入密码" tabindex="2" 
+                value maxlength="20">
+            </div>
+            <div class="login-sub">
+                <input type="button" value="登  录" class="login-button" onclick="doLogin()" >
+            </div>
+        </div>
+         <div class="login-code">
+            <div class="login-code-android">
+                <img src="./login/login-android.png" class="code-android">
+            </div>
+            <div class="login-code-ios">
+                <img src="./login/login-ios.png" class="code-ios">
+            </div>
+            <div class="login-code-android-code" style="display: none;">
+                <div class="code-title">安卓端下载</div>
+                <div class="code-img"><img src="./login/login-android-code.png" class="code-img-size"></div>            </div>
+            <div class="login-code-ios-code" style="display: none;">
+                <div class="code-title">ios端下载</div>
+                <div class="code-img"><img src="./login/login-ios-code.png" class="code-img-size"></div>
+            </div>
+        </div>
+        <div class="login-agreement">
+            <a>服务协议</a>|
+            <a>权力声明</a>|
+            <a>版本更新</a>|
+            <a>帮助中心</a>|
+            <a>版权投诉</a>
+        </div>
+    </div>
+</body>
+<script>
+    // banner start
+    (function(){
+        var btns=document.getElementById('banner-dot').getElementsByTagName('li');
+        btns[0].className+=' active';
+        
+        
+        for(var i=0;i<btns.length;i++){
+            btns[i].onclick=function(e){
+                changeBanner(e.target)
+            }
+        }
+        //配置
+        var config = {
+                vx: 4,  //小球x轴速度,正为右，负为左
+                vy: 4,  //小球y轴速度
+                height: 3,  //小球高宽，其实为正方形，所以不宜太大
+                width: 3,
+                count: 150,     //点个数
+                color: "185,185,185",   //点颜色
+                stroke: "185,185,185",      //线条颜色
+                dist: 6000,     //点吸附距离
+                e_dist: 20000,  //鼠标吸附加速距离
+                max_conn: 10    //点到点最大连接数
+            }
+
+      //调用
+      CanvasParticle(config);
+
+
+      function changeBanner(target){
+        // console.log(target.getAttribute('data-i'));
+            for(var i=0;i<btns.length;i++){
+                     btns[i].className='dot';
+                }
+                target.className+=' active';
+                var con=document.getElementById('banner-content');
+                if (target.getAttribute('data-i')!='0') {
+                    con.className='active'
+                }else{
+                    con.className='';
+                }
+      }
+
+      setInterval(function(){
+        for(var i=0;i<btns.length;i++){
+            if((btns[i].getAttribute('class').indexOf('active')!=-1)&&(i==0)){
+                changeBanner(btns[1]);
+                break;
+            }else{
+                changeBanner(btns[0]);
+                break;
+            }
+            }
+      },3000)       
+    })()
+    // banner end
+    $(document).ready(function() {
+        /**chrome**/
+        if(navigator.userAgent.toLowerCase().indexOf('chrome')>0) {
+            $(".login-input").focus(function() {
+                $(this).css("border","1px solid #0080d1");
+                $(this).prev().css("display", "");
+            });
+            $(".login-input").blur(function() {
+                $(this).css("border","1px solid #cbcbd5");
+                $(this).prev().css("display", "none");
+                var name = $(".login-name-input").val();
+                var pass = $(".login-password-input").val();
+                if(name!="" && pass!=""){
+                    $(".login-button").css("background-color", "#0070c9");
+                }else{
+                    $(".login-button").css("background-color", "#000000");
+                }
+            });
+        }
+        /**Opera**/
+        if(navigator.userAgent.toLowerCase().indexOf('opera')>0) {
+            $(".login-input").focus(function() {
+                $(this).css("border","1px solid #0080d1");
+                $(this).prev().css("display", "");
+            });
+            $(".login-input").blur(function() {
+                $(this).css("border","1px solid #cbcbd5");
+                $(this).prev().css("display", "none");
+                var name = $(".login-name-input").val();
+                var pass = $(".login-password-input").val();
+                if(name!="" && pass!=""){
+                    $(".login-button").css("background-color", "#0070c9");
+                }else{
+                    $(".login-button").css("background-color", "#000000");
+                }
+            });
+        }
+        /**Safari**/
+        if(navigator.userAgent.toLowerCase().indexOf('safari')>0) {
+            $(".login-name").click(function () {
+                $(".login-name-input").css("border","1px solid #0080d1");
+                $("#delete1").css("display", "");
+                $(".login-password-input").css("border","1px solid #cbcbd5");
+                $("#delete2").css("display", "none");
+            })
+            $(".login-password").click(function () {
+                $(".login-password-input").css("border","1px solid #0080d1");
+                $("#delete2").css("display", "");
+                $(".login-name-input").css("border","1px solid #cbcbd5");
+                $("#delete1").css("display", "none");
+            })
+        }
+        /** IE **/
+        if (window.navigator.userAgent.indexOf("MSIE")>=1){
+            $(".login-name").click(function () {
+                $(".login-name-input").css("border","1px solid #0080d1");
+                $("#delete1").css("display", "");
+                $(".login-password-input").css("border","1px solid #cbcbd5");
+                $("#delete2").css("display", "none");
+            })
+            $(".login-password").click(function () {
+                $(".login-password-input").css("border","1px solid #0080d1");
+                $("#delete2").css("display", "");
+                $(".login-name-input").css("border","1px solid #cbcbd5");
+                $("#delete1").css("display", "none");
+            })
+        }
+        if (!!window.ActiveXObject || "ActiveXObject" in window) {
+            $(".login-name").click(function () {
+                $(".login-name-input").css("border","1px solid #0080d1");
+                $("#delete1").css("display", "");
+                $(".login-password-input").css("border","1px solid #cbcbd5");
+                $("#delete2").css("display", "none");
+            })
+            $(".login-password").click(function () {
+                $(".login-password-input").css("border","1px solid #0080d1");
+                $("#delete2").css("display", "");
+                $(".login-name-input").css("border","1px solid #cbcbd5");
+                $("#delete1").css("display", "none");
+            })
+        }
+        /**firefox**/
+        if(navigator.userAgent.toLowerCase().indexOf('firefox')>0){
+            $(".login-name").click(function () {
+                $(".login-name-input").css("border","1px solid #0080d1");
+                $("#delete1").css("display", "");
+                $(".login-password-input").css("border","1px solid #cbcbd5");
+                $("#delete2").css("display", "none");
+            })
+            $(".login-password").click(function () {
+                $(".login-password-input").css("border","1px solid #0080d1");
+                $("#delete2").css("display", "");
+                $(".login-name-input").css("border","1px solid #cbcbd5");
+                $("#delete1").css("display", "none");
+            })
+        }
+        $("#delete1").mousedown(function () {
+            $(".login-name-input").val("");
+        })
+        $("#delete2").mousedown(function () {
+            $(".login-password-input").val("");
+        })
+        var me = this;
+        $(".login-code-ios").hover(function () {
+            me.tipShowTimer = setTimeout(function() {
+                $(".login-code-ios").css("background-color", "#d1d0d2");
+                $(".code-ios").attr("src","./login/login-ios2.png");
+                var h = document.documentElement.clientHeight;
+                if(h>=720){
+                    $(".login-code-ios-code").css("background-image", "url(./login/login-prompt.png)");
+                    $(".login-code-ios-code").css("top", "54px");
+                    $(".login-code-ios-code").css("left", "217px");
+                    $(".code-title").css("margin-top", "20px");
+                }else{
+                    $(".login-code-ios-code").css("background-image", "url(./login/login-prompt2.png)");
+                    $(".login-code-ios-code").css("top", "-165px");
+                    $(".login-code-ios-code").css("left", "215px");
+                    $(".code-title").css("margin-top", "10px");
+                }
+                $(".login-code-ios-code").css("display", "block");
+            }, 300)
+        },function () {
+            clearTimeout(me.tipShowTimer);
+            $(".login-code-ios").css("background-color", "");
+            $(".code-ios").attr('src',"./login/login-ios.png");
+            $(".login-code-ios-code").css("display", "none");
+        });
+        $(".login-code-android").hover(function () {
+            me.tipShowTimers = setTimeout(function() {
+                $(".login-code-android").css("background-color", "#d1d0d2");
+                $(".code-android").attr('src',"./login/login-android2.png");
+                var h = document.documentElement.clientHeight;
+                if(h>=720){
+                    $(".login-code-android-code").css("background-image", "url(./login/login-prompt.png)");
+                    $(".login-code-android-code").css("top", "54px");
+                    $(".login-code-android-code").css("left", "64px");
+                    $(".code-title").css("margin-top", "20px");
+                }else{
+                    $(".login-code-android-code").css("background-image", "url(./login/login-prompt2.png)");
+                    $(".login-code-android-code").css("top", "-165px");
+                    $(".login-code-android-code").css("left", "64px");
+                    $(".code-title").css("margin-top", "10px");
+                }
+                $(".login-code-android-code").css("display", "");
+            }, 300)
+        }, function () {
+            clearTimeout(me.tipShowTimers);
+            $(".login-code-android").css("background-color", "");
+            $(".code-android").attr('src',"./login/login-android.png");
+            $(".login-code-android-code").css("display", "none");
+        });
+        $(".login-button").mousedown(function () {
+            var name = $(".login-name-input").val();
+            var password = $(".login-password-input").val();
+            if(name != "" && password != ""){
+                $(".login-button").css("background-color", "#66bbff");
+            }
+        })
+        $(".login-button").mouseup(function () {
+            var name = $(".login-name-input").val();
+            var password = $(".login-password-input").val();
+            if(name != "" && password != ""){
+                $(".login-button").css("background-color", "#0070c9");
+            }
+        })
+        $(".login-name-input").keyup(function () {
+            var name = $(".login-name-input").val();
+            var password = $(".login-password-input").val();
+            if(name!=""&&password!="") {
+                $(".login-button").css("background-color", "#0070c9");
+            } else {
+                $(".login-button").css("background-color", "#000000");
+            }
+        })
+        $(".login-password-input").keyup(function () {
+            var name = $(".login-name-input").val();
+            var password = $(".login-password-input").val();
+            if(name!=""&&password!="") {
+                $(".login-button").css("background-color", "#0070c9");
+            } else {
+                $(".login-button").css("background-color", "#000000");
+            }
+        })
+        $(".login-wjmm").click(function () {
+            $(".login-wjmm").css("text-decoration", "underline");
+        })
+    })
+    function setLanguage(id) {
+        $("#"+id).addClass('active');
+        if(id == "china") {
+            $("#english").removeClass('active');
+        } else {
+            $("#china").removeClass('active');
+        }
+    }
+    function automaticLogin(id) {
+        var img1 = "./login/login-check1.png";
+        var img2 = "./login/login-check2.png";
+        var al = $("#automaticLoginID").val();
+        if(al == 0) {
+            $("#automaticLoginID").attr("value", 1);
+            $("#"+id).attr('src',img2);
+        } else {
+            $("#automaticLoginID").attr("value", 0);
+            $("#"+id).attr('src',img1);
+        }
+    }
+    function doLogin() {
+        var name = $(".login-name-input").val();
+        var password = $(".login-password-input").val();
+        $(".login-info").empty();
+        if(name == "" || name == null || name === undefined) {
+            $(".login-info").append("您的用户名为空");
+            return;
+        } else if(password == "" || password == null || password === undefined) {
+            $(".login-info").append("您的密码为空");
+            return;
+        }
+        $("#formID").doLogin();
+    }
+</script>
+
+
+</html>

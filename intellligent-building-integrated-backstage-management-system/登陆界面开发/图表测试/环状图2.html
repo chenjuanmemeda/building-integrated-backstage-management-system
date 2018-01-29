@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>环状图2</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+     <div id="main" style="width: 600px;height:400px;"></div>
+     <script>
+         // 基于准备好的dom，初始化echarts实例
+         var myChart = echarts.init(document.getElementById('main'));
+ 
+         // 指定图表的配置项和数据
+         var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data:['一级报警','二级报警','三级报警',]
+            },
+            series: [
+                {
+                    name:'访问来源',
+                    type:'pie',
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:[
+                        {value:335, name:'一级报警'},
+                        {value:310, name:'二级报警'},
+                        {value:234, name:'三级报警'},
+                    ]
+                }
+            ]
+        };
+          // 使用刚指定的配置项和数据显示图表。
+          myChart.setOption(option);
+          // 加载初始信息
+          function loadInitInfo(parentPartyName){
+            $.ajax({
+                url:'/PartyBulid/',
+                type:post,
+                cache:false,
+                data:{'parentPartyName':parentPartyName},
+                datatype:'json',
+                success:setClickInfo,
+                error:function(response){
+                    alert('数据获取失败，原因：超时或者错误号：'+response.status+',请稍后再试');
+                }
+            })
+          };
+
+          if(list!=null){
+            foreach((parentPartyName==null)||(item.pPartyName.Equals(parentPartName))||(parentPartName.Equals('')))
+            // 学历名规范
+            // 构建学历及人数信息
+            Models.Degree degree=new Models.Degree(){
+                name=item.educationName，
+                value=item.count
+            };
+            // 检索已填加的list中是否已存在该学历信息
+            Models.Degree exist=optionInfo.degreeInfo.Find(i=>l.name.Equals(item.educationName))；
+            if (exist==null) {
+                // 如果不存在则插入
+                optionInfo.degreeInfo.Add(item.educationName);
+            }
+            else{
+                // 如果存在则增加学历人数
+                exist.value+=item.count;
+            }
+          }
+
+          if(parentPartName!=null&&!(parentPartName.Equals(''))){
+            option
+          }
+
+          function setClickInfo(data){
+            try{
+                var tmpData=$.parseJSON(data);//解析后端返回的数据
+                // alert(data);
+                // alert(partyName);
+                // 清空数据
+                myChartDegree.clear();
+                if((tmpData[0].seriesName!='')&&
+                    (tmpData[0].degreeInfo!='')&&
+                    (tmpData[0].legendInfo!='')){
+                        obj.optionDegree.series[0]['name']=tmpData[0].seriesName;
+                        obj.optionDegree.series[0]['data']=tmpData[0].degreeInfo;
+                        obj.optionDegree.legend['data']=tmpData[0].legendInfo;
+                        //alert(tmpData[0]);
+                }
+                //使用刚指定的配置项和数据显示图表
+                myChartDegree.setOption(obj.optionDegree);
+                //myChartDegree.setTheme(theme);
+            }
+            catch(err){
+                alert('数据获取失败'+err.message);
+            }
+          }
+
+          // 
+          // jQuery.ajax({  
+        // url:"url",  
+        // type:'get',  
+        // dataType:'json',  
+        // success:function(jsons){  
+        //     var Item = function(){  
+        //         return {  
+        //             name:'',  
+        //             type:'line',  
+        //             itemStyle: {normal: {areaStyle: {type: 'default',opacity:isArea}}},  
+        //                     label: {normal: {show: isShowAllData,position: 'top'}},  
+        //                     markLine: {data: [{type: 'average', name: '平均值'}]},  
+        //                     data:[]  
+        //         }  
+        //     };// series中的每一项为一个item,所有的属性均可以在此处定义  
+        //     var legends = [];// 准备存放图例数据  
+        //     var Series = []; // 准备存放图表数据  
+        //     var json = jsons.data;// 后台返回的json  
+        //     for(var i=0;i < json.length;i++){  
+        //         var it = new Item();  
+        //         it.name = json[i].name;// 先将每一项填充数据  
+        //         legends.push(json[i].name);// 将每一项的图例名称也放到图例的数组中  
+        //         it.data = json[i].data;  
+        //         Series.push(it);// 将item放在series中  
+        //     }  
+              
+        //     option.xAxis[0].data = jsons.xcontent;// 这一步是设置X轴数据了，需要注意：option.xAxis.data = json.xcontent这样不行  
+        //                           // 折线图可设置上下两个X轴，所以必须是option.xAxis[0].data = json.xcontent  
+        //                           option.legend.data = legends;// 设置图例  
+        //                           option.series = Series; // 设置图表  
+        //                           myChart.setOption(option);// 重新加载图表  
+        //                    },  
+        //                    error:function(){  
+        //                           alert("数据加载失败！请检查数据链接是否正确");  
+        //                    }  
+        //           });  
+     </script>
+</body>
+</html>

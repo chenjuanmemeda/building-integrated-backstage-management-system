@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>自定义插件实现Banner滚动</title>
+<link rel="icon" href="login/favicon.ico" type="image/x-icon">
+<style>
+	.scrollBanner-icon:hover{
+		box-shadow: 0 0 5px 2px white;
+	}
+	.scrollBanner-icon:active{
+		background-color: white;box-shadow: 0 0 5px 2px white;
+	}
+</style>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.scrollBanner.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="banner"></div>
+<script type="text/javascript">
+$("#banner").scrollBanner({
+	images : [
+		{src:"login/login-1.png",title:"login-1",href:"#"},
+		{src:"login/login-2.png",title:"login-2",href:"#"},
+	],
+	scrollTime:3000,
+	bannerWidth:"100%",
+	bannerHeight:"614px",
+	iconColor: " #2a2a2b",
+	iconHoverColor : "white",
+	// iconActiveColor:"white",
+	iconPosition : "center"
+});
+</script>
+</body>
+</html>
